@@ -12,6 +12,8 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 
+#define LISTENQ 8
+
 void __attribute__((format(printf, 1, 2))) err_ret(const char *fmt, ...);
 void __attribute__((noreturn, format(printf, 1, 2))) err_sys(const char *fmt, ...);
 void __attribute__((format(printf, 2, 3))) err_cont(int error, const char *fmt, ...);
