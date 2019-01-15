@@ -59,7 +59,7 @@ ssize_t writen(int fd, const void *vptr, size_t n) {
     while (nleft > 0) {
         ssize_t nwritten = write(fd, ptr, nleft);
         if (nwritten < 0) {
-            if (errno = EINTR) {
+            if (errno == EINTR) {
                 nwritten = 0;
             } else {
                 return -1;
