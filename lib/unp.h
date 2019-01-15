@@ -8,11 +8,16 @@
 #define MAXLINE 4096
 
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include <termios.h>
 #include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #define LISTENQ 8
+#define bzero(ptr, n) memset((ptr), 0, (n))
 
 void __attribute__((format(printf, 1, 2))) err_ret(const char *fmt, ...);
 void __attribute__((noreturn, format(printf, 1, 2))) err_sys(const char *fmt, ...);
@@ -31,5 +36,11 @@ void __attribute__((format(printf, 2, 3))) log_cont(int error, const char *fmt, 
 void __attribute__((noreturn, format(printf, 2, 3))) log_exit(int error, const char *fmt, ...);
 void __attribute__((format(printf, 1, 2))) log_msg(const char *fmt, ...);
 void __attribute__((noreturn, format(printf, 1, 2))) log_quit(const char *fmt, ...);
+
+char *sock_ntop(const struct sockaddr *sockaddr, socklen_t addrlen);
+
+ssize_t readn(int fd, void *ptr, size_t n);
+ssize_t writen(int fd, const void *ptr, size_t n);
+ssize_t readline(int fd, void *ptr, size_t maxlen);
 
 #endif
