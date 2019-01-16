@@ -95,33 +95,3 @@ ssize_t readline(int fd, void *vptr, size_t maxlen) {
     *ptr = 0;
     return n;
 }
-
-void str_echo(int sockfd) {
-    ssize_t n;
-    char buf[MAXLINE];
-
-again:
-    while ((n = read(sockfd, buf, MAXLINE)) > 0) {
-        if (writen(sockfd, buf, n) < 0) {
-            err_sys("write error");
-        }
-    }
-    if (n < 0 && errno == EINTR) {
-        goto again;
-    } else if (n < 0) {
-        err_sys("str_echo: read error");
-    }
-}
-
-void str_cli(FILE *fp, int sockfd) {
-    char sendline[MAXLINE], recvline[MAXLINE];
-    while (fgets(sendline, MAXLINE, fp) != NULL) {
-        if (writen(sockfd, sendline, strlen(sendline)) < 0) {
-            err_sys("write error");
-        }
-        if (readline(sockfd, recvline, MAXLINE) <= 0) {
-            err_quit("str_cli: server terminated prematurely");
-        }
-        fputs(recvline, stdout);
-    }
-}
