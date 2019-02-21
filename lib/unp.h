@@ -1,8 +1,8 @@
 #if !defined(_APUE_H)
 #define _APUE_H
 
-#if !defined(_POSIX_C_SOURCE)
-#define _POSIX_C_SOURCE 200809
+#if !defined(_GNU_SOURCE)
+#define _GNU_SOURCE
 #endif
 
 #define MAXLINE 4096
