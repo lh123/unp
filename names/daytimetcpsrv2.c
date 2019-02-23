@@ -47,7 +47,7 @@ int tcp_listen(const char *host, const char *serv, socklen_t *paddrlen) {
     if (n != 0) {
         err_quit("tcp_listen error for %s, %s: %s", host, serv, gai_strerror(n));
     }
-
+    
     int listenfd;
     for (paddr = res; paddr != NULL; paddr = paddr->ai_next) {
         listenfd = socket(paddr->ai_family, paddr->ai_socktype, paddr->ai_protocol);

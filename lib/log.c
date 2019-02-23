@@ -7,7 +7,7 @@
 
 #include <sys/syslog.h>
 
-int log_to_stderr;
+int log_to_stderr = 0;
 
 static void log_doit(int errnoflag, int error, int priority, const char *fmt, va_list ap) {
     char buf[MAXLINE];

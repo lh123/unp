@@ -22,7 +22,10 @@
 
 #define LISTENQ 8
 #define SERV_PORT 9877
+#define MAXFD 64
 #define bzero(ptr, n) memset((ptr), 0, (n))
+
+extern int daemon_proc;
 
 void __attribute__((format(printf, 1, 2))) err_ret(const char *fmt, ...);
 void __attribute__((noreturn, format(printf, 1, 2))) err_sys(const char *fmt, ...);
@@ -47,5 +50,7 @@ char *sock_ntop(const struct sockaddr *sockaddr, socklen_t addrlen);
 ssize_t readn(int fd, void *ptr, size_t n);
 ssize_t writen(int fd, const void *ptr, size_t n);
 ssize_t readline(int fd, void *ptr, size_t maxlen);
+
+int daemon_init(const char *pname, int facility);
 
 #endif

@@ -5,6 +5,9 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <unistd.h>
+#include <syslog.h>
+
+int daemon_proc = 0;
 
 static void err_doit(int errnoflag, int error, const char *fmt, va_list ap) {
     char buf[MAXLINE];
@@ -14,9 +17,13 @@ static void err_doit(int errnoflag, int error, const char *fmt, va_list ap) {
         snprintf(buf + strlen(buf), MAXLINE - strlen(buf) - 1,": %s", strerror(error));
     }
     strcat(buf, "\n");
-    fflush(stdout);
-    fputs(buf, stdout);
-    fflush(stdout);
+    if (!daemon_proc) {
+        fflush(stdout);
+        fputs(buf, stdout);
+        fflush(stdout);
+    } else {
+        syslog(LOG_ERR, buf);
+    }
 }
 
 void err_ret(const char *fmt, ...) {
