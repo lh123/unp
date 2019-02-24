@@ -23,7 +23,7 @@ again:
     return 1;
 }
 
-ssize_t readline(int fd, void *vptr, size_t maxlen) {
+ssize_t readlinewithbuf(int fd, void *vptr, size_t maxlen) {
     char *ptr = vptr;
     ssize_t n, rc;
     char c;

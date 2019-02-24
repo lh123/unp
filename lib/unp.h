@@ -25,6 +25,9 @@
 #define MAXFD 64
 #define bzero(ptr, n) memset((ptr), 0, (n))
 
+typedef struct sockaddr SA;
+typedef void Sigfunc(int signo);
+
 extern int daemon_proc;
 
 void __attribute__((format(printf, 1, 2))) err_ret(const char *fmt, ...);
@@ -50,7 +53,12 @@ char *sock_ntop(const struct sockaddr *sockaddr, socklen_t addrlen);
 ssize_t readn(int fd, void *ptr, size_t n);
 ssize_t writen(int fd, const void *ptr, size_t n);
 ssize_t readline(int fd, void *ptr, size_t maxlen);
+ssize_t readlinewithbuf(int fd, void *vptr, size_t maxlen);
 
 int daemon_init(const char *pname, int facility);
+
+int connect_timeo(int sockfd, const struct sockaddr *saptr, socklen_t salen, int sec);
+
+int readable_timeo(int fd, int sec);
 
 #endif
