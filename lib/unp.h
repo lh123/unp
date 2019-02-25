@@ -5,8 +5,6 @@
 #define _GNU_SOURCE
 #endif
 
-#define MAXLINE 4096
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,9 +18,15 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#define MAXLINE 4096
+#define MAXFD 64
+
+#define UNIXSTR_PATH "/tmp/unix.str"
+#define UNIXDG_PATH "/tmp/unix.dg"
+
 #define LISTENQ 8
 #define SERV_PORT 9877
-#define MAXFD 64
+
 #define bzero(ptr, n) memset((ptr), 0, (n))
 
 typedef struct sockaddr SA;
@@ -60,5 +64,8 @@ int daemon_init(const char *pname, int facility);
 int connect_timeo(int sockfd, const struct sockaddr *saptr, socklen_t salen, int sec);
 
 int readable_timeo(int fd, int sec);
+
+ssize_t read_fd(int fd, void *ptr, size_t nbytes, int *recvfd);
+ssize_t write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
 
 #endif
