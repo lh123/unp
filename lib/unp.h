@@ -68,4 +68,11 @@ int readable_timeo(int fd, int sec);
 ssize_t read_fd(int fd, void *ptr, size_t nbytes, int *recvfd);
 ssize_t write_fd(int fd, void *ptr, size_t nbytes, int sendfd);
 
+struct addrinfo *host_serv(const char *hostname, const char *service, int family, int socktype);
+
+int tcp_listen(const char *host, const char *service);
+int tcp_connect(const char *host, const char *service);
+
+int connect_nonb(int sockfd, const SA *saptr, socklen_t salen, int nsec);
+
 #endif
