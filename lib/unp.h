@@ -18,14 +18,15 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define MAXLINE 4096
-#define MAXFD 64
+#define MAXLINE     4096
+#define MAXFD       64
+#define BUFFSIZE    8192
 
-#define UNIXSTR_PATH "/tmp/unix.str"
-#define UNIXDG_PATH "/tmp/unix.dg"
+#define UNIXSTR_PATH    "/tmp/unix.str"
+#define UNIXDG_PATH     "/tmp/unix.dg"
 
-#define LISTENQ 8
-#define SERV_PORT 9877
+#define LISTENQ     8
+#define SERV_PORT   9877
 
 #define bzero(ptr, n) memset((ptr), 0, (n))
 
@@ -72,6 +73,7 @@ struct addrinfo *host_serv(const char *hostname, const char *service, int family
 
 int tcp_listen(const char *host, const char *service);
 int tcp_connect(const char *host, const char *service);
+int udp_client(const char *host, const char *service, struct sockaddr *addr, socklen_t *addrlen);
 
 int connect_nonb(int sockfd, const SA *saptr, socklen_t salen, int nsec);
 
