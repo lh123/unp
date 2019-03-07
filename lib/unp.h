@@ -73,6 +73,7 @@ struct addrinfo *host_serv(const char *hostname, const char *service, int family
 
 int tcp_listen(const char *host, const char *service);
 int tcp_connect(const char *host, const char *service);
+int udp_server(const char *host, const char *serv, socklen_t *addrlenp);
 int udp_client(const char *host, const char *service, struct sockaddr *addr, socklen_t *addrlen);
 
 int connect_nonb(int sockfd, const SA *saptr, socklen_t salen, int nsec);
