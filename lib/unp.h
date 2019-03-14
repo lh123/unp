@@ -27,6 +27,7 @@
 
 #define LISTENQ     8
 #define SERV_PORT   9877
+#define SERV_PORT_STR "9877"
 
 #define bzero(ptr, n) memset((ptr), 0, (n))
 
