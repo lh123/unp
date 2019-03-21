@@ -95,4 +95,6 @@ int mcast_get_if(int sockfd);
 int mcast_get_loop(int sockfd);
 int mcast_get_ttl(int sockfd);
 
+char *px_ipc_name(const char *name);
+
 #endif
