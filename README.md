@@ -40,8 +40,8 @@
         - ~~Posix IPC~~
         - ~~System V IPC~~
     - 消息传递
-        - 🏃 管道和 FIFO
-        - Posix 消息队列
+        - ~~管道和 FIFO~~
+        - 🏃 Posix 消息队列
         - System V 消息队列
     - 同步
         - 互斥锁和条件变量

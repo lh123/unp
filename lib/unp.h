@@ -24,6 +24,7 @@
 
 #define UNIXSTR_PATH    "/tmp/unix.str"
 #define UNIXDG_PATH     "/tmp/unix.dg"
+#define FILEMODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
 
 #define LISTENQ     8
 #define SERV_PORT   9877
