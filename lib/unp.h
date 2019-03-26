@@ -34,6 +34,7 @@
 
 typedef struct sockaddr SA;
 typedef void Sigfunc(int signo);
+typedef void Sigfunc_rt(int signo, siginfo_t *info, void *context);
 
 extern int daemon_proc;
 
@@ -97,5 +98,6 @@ int mcast_get_loop(int sockfd);
 int mcast_get_ttl(int sockfd);
 
 char *px_ipc_name(const char *name);
+Sigfunc_rt *signal_rt(int signo, Sigfunc_rt *func, sigset_t *mask);
 
 #endif
