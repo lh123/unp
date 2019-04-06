@@ -33,6 +33,12 @@
 
 #define bzero(ptr, n) memset((ptr), 0, (n))
 
+union semun {
+    int val;
+    struct semid_ds *buf;
+    ushort *array;
+};
+
 typedef struct sockaddr SA;
 typedef void Sigfunc(int signo);
 typedef void Sigfunc_rt(int signo, siginfo_t *info, void *context);
